@@ -1,0 +1,106 @@
+﻿<Window x:Class="si_TicTacToe.TicTacToe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:si_TicTacToe" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="TicTacToe | Menu Principal" Height="480" Width="400"
+        Icon="/gameLogo.png" Loaded="loadingTicTacToe">
+    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <!-- BARRA DE CONTROL -->
+            <StackPanel x:Name="pnlBarraControl" Grid.Row="0"
+                                Orientation="Horizontal" FlowDirection="RightToLeft"
+                                Background="Transparent" Margin="0 0 5 0"
+                                MouseLeftButtonDown="pnlBarraControl_MouseLeftButtonDown">
+
+                <Button Click="btnCerrar_Click" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" Width="auto" Height="auto" VerticalAlignment="Center" Margin="10 0 0 0">
+                    <Grid>
+                        <materialDesign:PackIcon Kind="Close" Margin="0 0 0 0" Width="14" Height="14" Foreground="Red"/>
+                    </Grid>
+                </Button>
+
+                <Button Click="btnMinimizar_Click" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" Width="auto" Height="auto" VerticalAlignment="Center" Margin="10 0 0 0">
+                    <Grid>
+                        <materialDesign:PackIcon Kind="Minimize" Margin="0 0 0 0" Width="13" Height="13" Foreground="Gray"/>
+                    </Grid>
+                </Button>
+
+                <TextBlock Margin="115 2 0 00" Text="Tic-Tac-Toe" FontWeight="Bold" FontSize="14" FontFamily="Poppins"/>
+                <Image Source="/gameLogo.png" Margin="2 2 0 0"/>
+
+            </StackPanel>
+
+            <!-- PANEL DE BOTONES PARA EL GATO -->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <UniformGrid Rows="3" Columns="3">
+                    <Button x:Name="buttonPosicionZero" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionZero_Click"/>
+                    <Button x:Name="buttonPosicionOne" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionOne_Click"/>
+                    <Button x:Name="buttonPosicionTwo" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionTwo_Click"/>
+                    <Button x:Name="buttonPosicionTree" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionTree_Click"/>
+                    <Button x:Name="buttonPosicionFour" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionFour_Click"/>
+                    <Button x:Name="buttonPosicionFive" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionFive_Click"/>
+                    <Button x:Name="buttonPosicionSix" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionSix_Click"/>
+                    <Button x:Name="buttonPosicionSeven" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionSeven_Click"/>
+                    <Button x:Name="buttonPosicionEight" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionEight_Click"/>
+                </UniformGrid>
+            </StackPanel>
+
+            <!-- PANEL DE ESTADO DEL JUEGO -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Grid para dividir en 3 columnas -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Bloque del JUGADOR X -->
+                    <StackPanel Grid.Column="0" Margin="5">
+                        <WrapPanel Orientation="Vertical">
+                            <TextBlock x:Name="playerNameX" FontSize="18" FontFamily="Poppins" Text="Jugador X" Margin="5 5 5 0"/>
+                            <TextBlock x:Name="pointsPlayerX" FontSize="30" FontWeight="Bold" FontFamily="Poppins" Text="0" HorizontalAlignment="Center" Margin="5" />
+                        </WrapPanel>
+                    </StackPanel>
+
+                    <!-- Bloque del INFORMACION -->
+                    <StackPanel Grid.Column="1" Margin="5 0 5 0">
+                        <WrapPanel Orientation="Vertical">
+                            <TextBlock x:Name="turnoJugadores" FontSize="14" FontFamily="Poppins" Text="↩" HorizontalAlignment="Center" Margin="5 0 5 0"/>
+                            <TextBlock FontSize="16" FontFamily="Poppins" Text="vs" HorizontalAlignment="Center" Margin="5 0 5 0"/>
+                            <TextBlock x:Name="cronometro" FontSize="14" FontWeight="Bold" Width="40" FontFamily="Poppins" Text="00:00" HorizontalAlignment="Center" Margin="5 0 5 0"/>
+                            <TextBlock FontSize="20" FontWeight="Bold" FontFamily="Poppins" HorizontalAlignment="Center" Margin="5 0 5 0">
+                                <materialDesign:PackIcon Kind="TimerSandComplete" />
+                            </TextBlock>
+                            <TextBlock x:Name="contadorRondas" FontSize="12" FontWeight="Light" Foreground="#1d1d1d" FontFamily="Poppins" Text="1" HorizontalAlignment="Center" Width="auto"/>
+                        </WrapPanel>
+                    </StackPanel>
+
+                    <!-- Bloque del JUGADOR X -->
+                    <StackPanel Grid.Column="2" Margin="5">
+                        <WrapPanel Orientation="Vertical">
+                            <TextBlock x:Name="playerNameO" FontSize="18" FontFamily="Poppins" Text="Jugador O" Margin="5 5 5 0"/>
+                            <TextBlock x:Name="pointsPlayerO" FontSize="30" FontWeight="Bold" FontFamily="Poppins" Text="0" HorizontalAlignment="Center" Margin="5" />
+                        </WrapPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+
+        </Grid>
+    </materialDesign:Card>
+</Window>

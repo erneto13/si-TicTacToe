@@ -1,0 +1,60 @@
+﻿<Window x:Class="si_TicTacToe.Windows.InputNamePlayers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:si_TicTacToe.Windows" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="TicTacToe | Selección de jugadores" Height="290" Width="350"
+        Icon="/gameLogo.png" ShowInTaskbar="False">
+    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <!-- BARRA DE CONTROL -->
+            <StackPanel x:Name="pnlBarraControl" Grid.Row="0"
+                                Orientation="Horizontal" FlowDirection="RightToLeft"
+                                Background="Transparent" Margin="0 0 5 0"
+                                MouseLeftButtonDown="pnlBarraControl_MouseLeftButtonDown">
+
+                <Button Click="btnCerrar_Click" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" Width="auto" Height="auto" VerticalAlignment="Center" Margin="10 0 0 0">
+                    <Grid>
+                        <materialDesign:PackIcon Kind="Close" Margin="0 0 0 0" Width="14" Height="14" Foreground="Red"/>
+                    </Grid>
+                </Button>
+
+                <TextBlock Margin="115 2 0 00" Text="Tic-Tac-Toe" FontWeight="Bold" FontSize="14" FontFamily="Poppins"/>
+                <Image x:Name="ojoUnSuperEasterEgg" Source="/gameLogo.png" Margin="2 2 0 0" MouseEnter="superSecretEvent"/>
+
+            </StackPanel>
+
+            <!-- PANEL PARA EL PRIMER JUGADOR O JUGADOR X -->
+            <StackPanel Grid.Row="1" Margin="15">
+                <TextBlock Text="Primer Jugador: " FontSize="14" FontFamily="Poppins" Margin="5 5 5 0" />
+                <TextBox Foreground="#1d1d1d" Margin="5 5 5 0" materialDesign:HintAssist.Hint=" Nombre del primer jugador" x:Name="txtJugadorX" Height="30" Width="220" FontFamily="Poppins" FontSize="12" BorderBrush="#101010" />
+            </StackPanel>
+
+            <!-- PANEL PARA EL PRIMER JUGADOR O JUGADOR X -->
+            <StackPanel Grid.Row="2" Margin="15">
+                <TextBlock Text="Segundo Jugador: " FontSize="14" FontFamily="Poppins" Margin="5 5 5 0" />
+                <TextBox Foreground="#1d1d1d" Margin="5 5 5 0" materialDesign:HintAssist.Hint=" Nombre del segundo jugador" x:Name="txtJugadorO" Height="30" Width="220" FontFamily="Poppins" FontSize="12" BorderBrush="#101010" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Margin="5">
+                <Button Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="30" Width="190" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#f1f1f1" FontSize="14" Content="Empeazar la partida" Click="buttonNewGame"/>
+            </StackPanel>
+
+
+        </Grid>
+    </materialDesign:Card>
+</Window>

@@ -1,0 +1,65 @@
+﻿<Window x:Class="si_TicTacToe.Windows.VDD.VictoryView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:si_TicTacToe.Windows.VDD" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="TicTacToe | Victoria" Height="290" Width="350"
+        Icon="/gameLogo.png" ShowInTaskbar="False" Loaded="onLoadView">
+    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- BARRA DE CONTROL -->
+            <StackPanel x:Name="pnlBarraControl" Grid.Row="0"
+                                Orientation="Horizontal" FlowDirection="RightToLeft"
+                                Background="Transparent" Margin="0 0 5 0"
+                                MouseLeftButtonDown="pnlBarraControl_MouseLeftButtonDown">
+
+                <Button Click="btnCerrar_Click" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" Width="auto" Height="auto" VerticalAlignment="Center" Margin="10 0 0 0">
+                    <Grid>
+                        <materialDesign:PackIcon Kind="Close" Margin="0 0 0 0" Width="14" Height="14" Foreground="Red"/>
+                    </Grid>
+                </Button>
+
+                <TextBlock Margin="115 2 0 00" Text="Tic-Tac-Toe" FontWeight="Bold" FontSize="14" FontFamily="Poppins"/>
+                <Image Source="/gameLogo.png" Margin="2 2 0 0"/>
+
+            </StackPanel>
+
+            <!-- PANEL DEL SIMBOLO DEL JUGADOR GANADOR -->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  x:Name="symbolWinner" Text="O" FontFamily="Poppins" FontSize="122" FontWeight="Bold"/>
+            </StackPanel>
+
+            <!-- PANEL DE LAS ESTADISTICAS DEL JUGADOR -->
+            <!-- Bloque del JUGADOR X -->
+            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="roundCountTitle" HorizontalAlignment="Center" FontSize="18" FontFamily="Poppins" Text="¡Ronda 1 terminada!"/>
+                <TextBlock x:Name="playerNameWin" Grid.Row="1" FontSize="12" FontWeight="Bold" FontFamily="Poppins" Text="" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" />
+                <WrapPanel Grid.Row="2">
+                    <Button Margin="0 20 5 0" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="30" Width="120" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#f1f1f1" FontSize="14" Content="Otra ronda" Click="buttonNewRound"/>
+                    <Button Margin="0 20 5 0" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="30" Width="90" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#f1f1f1" BorderBrush="#1d1d1d" Foreground="#1d1d1d" FontSize="14" Content="GG!" Click="buttonRageQuit"/>
+                </WrapPanel>
+            </Grid>
+
+
+        </Grid>
+    </materialDesign:Card>
+</Window>
