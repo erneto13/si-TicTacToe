@@ -1,22 +1,14 @@
 ﻿using si_TicTacToe.Windows;
 using si_TicTacToe.Windows.VDD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
+using System.Speech.Recognition;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+
 
 namespace si_TicTacToe
 {
@@ -32,8 +24,9 @@ namespace si_TicTacToe
             this.inputNamePlayers = inputNamePlayers;
         }
 
-        // Instancias
+        // Objetos
         private VictoryView victoryView;
+        private SpeechRecognitionEngine voiceSpeech = new SpeechRecognitionEngine();
 
         // Variables
         Button[,] buttons = new Button[4, 4]; // Definimos un array 2D que representan los botones del juego
@@ -45,12 +38,14 @@ namespace si_TicTacToe
         public int checkingFlag = 1; // Variable para salir de ciclos, hacer verificaciones, etc
 
         public string symbolSelector; // Variable para definir el simbolo que jugarán los jugadores [X,O]
-        public string playerX = "Ernesto"; // Variable para definir el nombre del jugador X
-        public string playerO = "Josue"; // Variable para definir el nombre del jugador O
+        public string playerX; // Variable para definir el nombre del jugador X
+        public string playerO; // Variable para definir el nombre del jugador O
         public string drawRound = "Ningun jugador gano, ronda empatada"; // Variable para indicar cuando haya un empate
 
         private DispatcherTimer dispatcherTimer;
         private int seconds;
+
+        private bool isVoiceRecognitionActive = false;
 
         public string winnerName { get; private set; }
         [DllImport("user32.dll")]
@@ -75,10 +70,16 @@ namespace si_TicTacToe
 
         }
 
-        public TicTacToe()
+        public TicTacToe(string playerX, string playerO)
         {
             InitializeComponent();
+            this.playerX = playerX;
+            this.playerO = playerO;
             inicializarTablero();
+            playerNameX.Text = playerX;
+            playerNameO.Text = playerO;
+
+            voiceSpeech = new SpeechRecognitionEngine();
 
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += cronometrajeGenerador;
@@ -402,6 +403,48 @@ namespace si_TicTacToe
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        // Método para los comandos de voz
+        private void voiceCommand_Click(object sender, RoutedEventArgs e)
+        {
+            voiceSpeech.SetInputToDefaultAudioDevice(); // Asignamos el microfono por default
+            voiceSpeech.LoadGrammar(new DictationGrammar()); // Le asignamos la gramática de nuestro sistema
+            voiceSpeech.SpeechRecognized += detectVoice; // Le asignamos el mètodo para que reconozca lo que digamos
+            voiceSpeech.RecognizeAsync(RecognizeMode.Multiple); // Asignamos que reconozca multiples voces (mejor que el Single)
+        }
+
+        private void detectVoice(object sender, SpeechRecognizedEventArgs e)
+        {
+            micON.Foreground = System.Windows.Media.Brushes.Lime;
+            string[] numbers = { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve" }; // Diccionario
+            string[] buttonsNames = { "buttonPosicionZero", "buttonPosicionOne", "buttonPosicionTwo", "buttonPosicionTree",
+                              "buttonPosicionFour", "buttonPosicionFive", "buttonPosicionSix", "buttonPosicionSeven",
+                              "buttonPosicionEight" };
+
+            string spokenNumber = e.Result.Text.ToLower(); // Convertir el texto reconocido a minúsculas
+
+            // Verificar si el número reconocido está en el arreglo de números
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (spokenNumber.Contains(numbers[i]))
+                {
+                    // Encontramos el número hablado, ahora hacemos clic en el botón correspondiente
+                    Button button = (Button)FindName(buttonsNames[i]); // Buscar el botón por su nombre
+                    if (button != null && button.IsEnabled) // Verificar si el botón existe y está habilitado
+                    {
+                        button.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // Simular clic en el botón
+                    }
+                    return; // Salir del bucle una vez que se haya hecho clic en el botón correspondiente
+                }
+            }
+        }
+
+
+        private void voiceCommandMute_Click(object sender, RoutedEventArgs e)
+        {
+            micON.Foreground = System.Windows.Media.Brushes.Black;
+            voiceSpeech.RecognizeAsyncStop();
         }
     }
 }

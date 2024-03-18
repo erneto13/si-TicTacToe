@@ -9,15 +9,16 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="TicTacToe | Victoria" Height="290" Width="350"
+        Title="TicTacToe | Victoria" Height="300" Width="350"
         Icon="/gameLogo.png" ShowInTaskbar="False" Loaded="onLoadView">
     <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
         <Grid>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
             <!-- BARRA DE CONTROL -->
@@ -48,17 +49,18 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock x:Name="roundCountTitle" HorizontalAlignment="Center" FontSize="18" FontFamily="Poppins" Text="¡Ronda 1 terminada!"/>
-                <TextBlock x:Name="playerNameWin" Grid.Row="1" FontSize="12" FontWeight="Bold" FontFamily="Poppins" Text="" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" />
+                <TextBlock x:Name="playerNameWin" Grid.Row="1" FontSize="12" FontWeight="Bold" FontFamily="Poppins" Text="aaaaaaaaaaaaaaaaaaaaaaaaaaa" TextWrapping="Wrap" HorizontalAlignment="Center" MaxWidth="220" TextAlignment="Center" />
+            </Grid>
+            <!-- PANEL DE LOS BOTONES DE OPCIONES -->
+            <Grid Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <WrapPanel Grid.Row="2">
                     <Button Margin="0 20 5 0" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="30" Width="120" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#f1f1f1" FontSize="14" Content="Otra ronda" Click="buttonNewRound"/>
                     <Button Margin="0 20 5 0" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="30" Width="90" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#f1f1f1" BorderBrush="#1d1d1d" Foreground="#1d1d1d" FontSize="14" Content="GG!" Click="buttonRageQuit"/>
                 </WrapPanel>
             </Grid>
-
 
         </Grid>
     </materialDesign:Card>

@@ -48,28 +48,15 @@ namespace si_TicTacToe.Windows
 
         private void buttonNewGame(object sender, RoutedEventArgs e)
         {
-
-            if (txtJugadorX.Text == string.Empty){
-
-                MessageBox.Show("Debe introducir un nombre de usuario", "Error encontrado", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            } else if (txtJugadorO.Text == string.Empty) {
-
-                MessageBox.Show("Debe introducir un nombre de usuario", "Error encontrado", MessageBoxButton.OK, MessageBoxImage.Error);
-
+            if (txtJugadorX.Text == string.Empty || txtJugadorO.Text == string.Empty)
+            {
+                MessageBox.Show("Debe introducir un nombre de usuario para ambos jugadores", "Error encontrado", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else {
-
-                // Se le asignna los nombres a los jugadores
-                txtJugadorX.Text = nameFirstPlayer;
-                txtJugadorO.Text = nameSecondPlayer;
-
-
-                // Se crear la instancia y se muestra la ventana de juego
-                ticTacToe = new TicTacToe();
+            else
+            {
+                TicTacToe ticTacToe = new TicTacToe(txtJugadorX.Text, txtJugadorO.Text);
                 ticTacToe.Show();
                 this.Close();
-
             }
         }
     }

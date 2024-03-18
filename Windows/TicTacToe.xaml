@@ -57,6 +57,14 @@
                     <Button x:Name="buttonPosicionSeven" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionSeven_Click"/>
                     <Button x:Name="buttonPosicionEight" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="80" Width="80" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#1d1d1d" BorderBrush="Transparent" Foreground="#ffffff" FontSize="42" Content="" Click="buttonPosicionEight_Click"/>
                 </UniformGrid>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Margin="0 0 5 0" x:Name="voiceCommand" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="20" Width="50" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#ffffff" BorderBrush="#1d1d1d" Foreground="#1d1d1d" FontSize="42" Click="voiceCommand_Click">
+                        <materialDesign:PackIcon Kind="Microphone" x:Name="micON"/>
+                    </Button>
+                    <Button x:Name="mute" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="20" Width="50" materialDesign:ButtonAssist.CornerRadius="5" FontFamily="Poppins" Background="#ffffff" BorderBrush="#1d1d1d" Foreground="#1d1d1d" FontSize="42" Click="voiceCommandMute_Click">
+                        <materialDesign:PackIcon Kind="MicrophoneOff" Foreground="Red" x:Name="micOFF"/>
+                    </Button>
+                </WrapPanel>
             </StackPanel>
 
             <!-- PANEL DE ESTADO DEL JUEGO -->
@@ -72,7 +80,7 @@
                     <!-- Bloque del JUGADOR X -->
                     <StackPanel Grid.Column="0" Margin="5">
                         <WrapPanel Orientation="Vertical">
-                            <TextBlock x:Name="playerNameX" FontSize="18" FontFamily="Poppins" Text="Jugador X" Margin="5 5 5 0"/>
+                            <TextBlock x:Name="playerNameX" FontSize="18" MaxWidth="100" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" FontFamily="Poppins" Text="Jugador X" Margin="5 5 5 -10"/>
                             <TextBlock x:Name="pointsPlayerX" FontSize="30" FontWeight="Bold" FontFamily="Poppins" Text="0" HorizontalAlignment="Center" Margin="5" />
                         </WrapPanel>
                     </StackPanel>
@@ -93,7 +101,7 @@
                     <!-- Bloque del JUGADOR X -->
                     <StackPanel Grid.Column="2" Margin="5">
                         <WrapPanel Orientation="Vertical">
-                            <TextBlock x:Name="playerNameO" FontSize="18" FontFamily="Poppins" Text="Jugador O" Margin="5 5 5 0"/>
+                            <TextBlock x:Name="playerNameO" FontSize="18" MaxWidth="100" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" FontFamily="Poppins" Text="Jugador O" Margin="5 5 5 -10"/>
                             <TextBlock x:Name="pointsPlayerO" FontSize="30" FontWeight="Bold" FontFamily="Poppins" Text="0" HorizontalAlignment="Center" Margin="5" />
                         </WrapPanel>
                     </StackPanel>
